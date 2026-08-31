@@ -1,0 +1,190 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/seolith-llc/stepjson/main/schema/1.0/step.schema.json",
+  "title": "StepJSON step document",
+  "description": "A short, repeatable unit of dance movement as timed keyframe poses on a normalized 2D skeleton, with provenance and rights metadata. See stepjson-spec.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "stepjson", "id", "name", "style", "summary", "origin", "sources",
+    "license", "rights", "music", "loop", "difficulty", "audience", "keyframes"
+  ],
+  "properties": {
+    "stepjson": { "const": "1.0", "description": "Format version. Validators MUST reject unknown versions." },
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "name": { "type": "string", "minLength": 1 },
+    "aliases": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "style": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["family"],
+      "properties": {
+        "family": { "type": "string", "minLength": 1 },
+        "tags": { "type": "array", "items": { "type": "string" }, "default": [] }
+      }
+    },
+    "summary": { "type": "string", "minLength": 1 },
+    "origin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["region"],
+      "properties": {
+        "region": { "type": "string", "minLength": 1 },
+        "era": { "type": "string" },
+        "story": { "type": "string", "default": "" },
+        "meaning": { "type": "string", "default": "" }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/source" },
+      "description": "At least one source; every factual claim in origin should be traceable."
+    },
+    "license": { "$ref": "#/definitions/licenseType" },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["choreographyStatus", "reviewedBy", "reviewedAt"],
+      "properties": {
+        "choreographyStatus": {
+          "enum": [
+            "social-dance-steps", "folk-traditional", "historical-reconstruction",
+            "original-ours", "user-created", "licensed", "review-required"
+          ]
+        },
+        "notes": { "type": "string" },
+        "reviewedBy": { "type": "string", "minLength": 1 },
+        "reviewedAt": { "$ref": "#/definitions/date" }
+      }
+    },
+    "music": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["defaultBpm", "meter", "counts"],
+      "properties": {
+        "defaultBpm": { "type": "integer", "minimum": 40, "maximum": 300 },
+        "meter": { "type": "string", "minLength": 1 },
+        "counts": { "type": "integer", "minimum": 1, "maximum": 16 }
+      }
+    },
+    "loop": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["beats", "seamless"],
+      "properties": {
+        "beats": { "type": "integer", "minimum": 1, "maximum": 64 },
+        "seamless": { "type": "boolean" }
+      }
+    },
+    "difficulty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["energy", "complexity", "coordination"],
+      "properties": {
+        "energy": { "$ref": "#/definitions/scale15" },
+        "complexity": { "$ref": "#/definitions/scale15" },
+        "coordination": { "$ref": "#/definitions/scale15" }
+      }
+    },
+    "audience": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "enum": ["kids", "teens", "adults", "seniors", "classroom", "all-ages"] }
+    },
+    "annotations": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["atBeat", "note"],
+        "properties": {
+          "atBeat": { "type": "number", "minimum": 0 },
+          "note": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "keyframes": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "$ref": "#/definitions/keyframe" },
+      "description": "Sorted by beat; the first keyframe must be at beat 0 (see spec §4)."
+    },
+    "culturalNotes": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text", "sensitivity"],
+        "properties": {
+          "text": { "type": "string", "minLength": 1 },
+          "sensitivity": { "enum": ["none", "context-recommended", "consultation-required"] }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "scale15": { "type": "integer", "minimum": 1, "maximum": 5 },
+    "licenseType": { "enum": ["proprietary", "cc-by-4.0", "public-domain", "work-for-hire"] },
+    "vec2": {
+      "type": "array",
+      "items": { "type": "number" },
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "[x, y] in rig units: origin at the hip midpoint, +y up, dist(leftHip, rightHip) = 1."
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "title", "accessed"],
+      "properties": {
+        "kind": { "enum": ["encyclopedia", "book", "journal", "video", "expert", "other"] },
+        "title": { "type": "string", "minLength": 1 },
+        "publisher": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "format": "uri" },
+        "accessed": { "$ref": "#/definitions/date" }
+      }
+    },
+    "poseOverlay": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Per-joint absolute positions; omitted joints inherit the standing rest pose.",
+      "properties": {
+        "nose": { "$ref": "#/definitions/vec2" },
+        "leftEye": { "$ref": "#/definitions/vec2" },
+        "rightEye": { "$ref": "#/definitions/vec2" },
+        "leftEar": { "$ref": "#/definitions/vec2" },
+        "rightEar": { "$ref": "#/definitions/vec2" },
+        "leftShoulder": { "$ref": "#/definitions/vec2" },
+        "rightShoulder": { "$ref": "#/definitions/vec2" },
+        "leftElbow": { "$ref": "#/definitions/vec2" },
+        "rightElbow": { "$ref": "#/definitions/vec2" },
+        "leftWrist": { "$ref": "#/definitions/vec2" },
+        "rightWrist": { "$ref": "#/definitions/vec2" },
+        "leftHip": { "$ref": "#/definitions/vec2" },
+        "rightHip": { "$ref": "#/definitions/vec2" },
+        "leftKnee": { "$ref": "#/definitions/vec2" },
+        "rightKnee": { "$ref": "#/definitions/vec2" },
+        "leftAnkle": { "$ref": "#/definitions/vec2" },
+        "rightAnkle": { "$ref": "#/definitions/vec2" },
+        "leftFootIndex": { "$ref": "#/definitions/vec2" },
+        "rightFootIndex": { "$ref": "#/definitions/vec2" }
+      }
+    },
+    "keyframe": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["beat"],
+      "properties": {
+        "beat": { "type": "number", "minimum": 0 },
+        "pose": { "$ref": "#/definitions/poseOverlay", "default": {} },
+        "rootOffset": { "$ref": "#/definitions/vec2" },
+        "ease": { "enum": ["linear", "easeInOut", "hold"], "default": "linear" },
+        "facing": { "enum": ["front", "left", "right", "back"] }
+      }
+    }
+  }
+}

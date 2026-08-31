@@ -1,0 +1,35 @@
+StepJSON Specification
+Copyright (c) 2026 Seolith LLC
+
+SPDX-License-Identifier: CC-BY-4.0
+
+This work — the StepJSON specification document, the JSON Schemas under schema/, and the
+example documents under examples/ — is licensed under the Creative Commons Attribution 4.0
+International License (CC BY 4.0).
+
+You are free to:
+
+  * Share   — copy and redistribute the material in any medium or format.
+  * Adapt   — remix, transform, and build upon the material for any purpose, including
+              commercially.
+
+The licensor cannot revoke these freedoms as long as you follow the license terms.
+
+Under the following terms:
+
+  * Attribution — You must give appropriate credit to Seolith LLC, provide a link to the
+    license, and indicate if changes were made. You may do so in any reasonable manner,
+    but not in any way that suggests Seolith LLC endorses you or your use.
+  * No additional restrictions — You may not apply legal terms or technological measures
+    that legally restrict others from doing anything the license permits.
+
+Notices:
+
+  * The complete, authoritative legal text of CC BY 4.0 is published by Creative Commons
+    at https://creativecommons.org/licenses/by/4.0/legalcode and is incorporated here by
+    reference. The summary above is a convenience, not a substitute for it.
+  * This license covers the specification only. The Shadowstep step catalog, its content
+    files, and the TypeScript reference implementation are separate works, are NOT
+    licensed here, and remain proprietary to Seolith LLC.
+  * Implementing this specification does not grant any right to Seolith LLC trademarks or
+    to the Shadowstep name.

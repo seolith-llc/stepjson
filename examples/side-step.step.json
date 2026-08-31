@@ -1,0 +1,91 @@
+{
+  "stepjson": "1.0",
+  "id": "example-side-step",
+  "name": "Side Step",
+  "aliases": ["step-touch"],
+  "style": { "family": "social-basics", "tags": ["beginner", "weight-transfer"] },
+  "summary": "From feet together: step the left foot out on count 1 and close the right foot to it on count 2; step the right foot back out on count 3 and close on count 4, finishing where you began.",
+  "origin": {
+    "region": "Global (generic social-dance vocabulary)",
+    "story": "The side step is ubiquitous vocabulary rather than anyone's invention: a weight change to the side and a close. It is included here purely to demonstrate the StepJSON document shape.",
+    "meaning": "Establishes pulse and lateral weight transfer."
+  },
+  "sources": [
+    {
+      "kind": "expert",
+      "title": "Authored as a worked example for the StepJSON specification",
+      "publisher": "Seolith LLC",
+      "accessed": "2026-08-30"
+    }
+  ],
+  "license": "cc-by-4.0",
+  "rights": {
+    "choreographyStatus": "original-ours",
+    "notes": "Written for the specification; commonplace social-dance vocabulary, not a protected choreographic work.",
+    "reviewedBy": "spec-example",
+    "reviewedAt": "2026-08-30"
+  },
+  "music": { "defaultBpm": 100, "meter": "4/4", "counts": 4 },
+  "loop": { "beats": 4, "seamless": true },
+  "difficulty": { "energy": 1, "complexity": 1, "coordination": 1 },
+  "audience": ["all-ages", "classroom"],
+  "annotations": [
+    { "atBeat": 1, "note": "Left foot steps out to the side." },
+    { "atBeat": 2, "note": "Right foot closes to meet it — feet together." },
+    { "atBeat": 3, "note": "Right foot steps back out to the other side." }
+  ],
+  "keyframes": [
+    {
+      "beat": 0,
+      "pose": {
+        "leftAnkle": [-0.2, -1.7],
+        "leftFootIndex": [-0.24, -1.78],
+        "leftKnee": [-0.35, -0.85],
+        "rightAnkle": [0.2, -1.7],
+        "rightFootIndex": [0.24, -1.78],
+        "rightKnee": [0.35, -0.85]
+      },
+      "ease": "easeInOut"
+    },
+    {
+      "beat": 1,
+      "pose": {
+        "leftAnkle": [-0.9, -1.7],
+        "leftFootIndex": [-0.94, -1.78],
+        "leftKnee": [-0.7, -0.85],
+        "rightAnkle": [0.2, -1.7],
+        "rightFootIndex": [0.24, -1.78],
+        "rightKnee": [0.35, -0.85]
+      },
+      "rootOffset": [-0.15, 0],
+      "ease": "easeInOut"
+    },
+    {
+      "beat": 2,
+      "pose": {
+        "leftAnkle": [-0.9, -1.7],
+        "leftFootIndex": [-0.94, -1.78],
+        "leftKnee": [-0.7, -0.85],
+        "rightAnkle": [-0.5, -1.7],
+        "rightFootIndex": [-0.46, -1.78],
+        "rightKnee": [-0.35, -0.85]
+      },
+      "rootOffset": [-0.35, 0],
+      "ease": "easeInOut"
+    },
+    {
+      "beat": 3,
+      "pose": {
+        "leftAnkle": [-0.9, -1.7],
+        "leftFootIndex": [-0.94, -1.78],
+        "leftKnee": [-0.7, -0.85],
+        "rightAnkle": [0.2, -1.7],
+        "rightFootIndex": [0.24, -1.78],
+        "rightKnee": [0.35, -0.85]
+      },
+      "rootOffset": [-0.15, 0],
+      "ease": "easeInOut"
+    }
+  ],
+  "culturalNotes": []
+}

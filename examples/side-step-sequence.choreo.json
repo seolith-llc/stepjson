@@ -1,0 +1,19 @@
+{
+  "choreojson": "1.0",
+  "id": "example-side-step-sequence",
+  "title": "Side Step — four bars",
+  "author": "Seolith LLC",
+  "createdAt": "2026-08-30",
+  "license": "cc-by-4.0",
+  "transitionBeats": 1,
+  "entries": [
+    { "stepId": "example-side-step", "repeats": 2, "tempoPct": 100 },
+    {
+      "stepId": "example-side-step",
+      "repeats": 2,
+      "tempoPct": 120,
+      "mirror": true,
+      "poseOverlay": { "leftWrist": [-0.7, 1.1], "rightWrist": [0.7, 1.1] }
+    }
+  ]
+}
