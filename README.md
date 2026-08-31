@@ -86,8 +86,10 @@ TypeScript reference implementation are separate works and are not published her
 
 ## License
 
-The specification, schemas, and examples are licensed **[CC BY 4.0](LICENSE)** — implement
-them freely, including commercially, with attribution to Seolith LLC.
+The specification, schemas, and examples are licensed **CC BY 4.0** — implement them
+freely, including commercially, with attribution to Seolith LLC. The full legal text is in
+[LICENSE](LICENSE); [NOTICE](NOTICE) records the copyright, the attribution requirement,
+and what the licence does NOT cover (the Shadowstep catalog and implementation).
 
 Implementations do not need permission and there is no conformance programme: a document
 that satisfies the schemas and the §9 rules, and replays deterministically, is StepJSON.
